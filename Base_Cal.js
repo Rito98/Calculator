@@ -8,6 +8,7 @@ TODO:
 (function() {
   "use strict";
 
+
   // Shortcut to get elements
   var el = function(element) {
     if (element.charAt(0) === "#") { // If passed an ID...
@@ -35,23 +36,24 @@ TODO:
     } else { // Otherwise, add digit to previous number (this is a string!)
       theNum += this.getAttribute("data-num");
     }
-
+    console.log(theNum+' is clicked')
     viewer.innerHTML = theNum; // Display current number
-
   };
+
+  //fine setnum
 
   // When: Operator is clicked. Pass number to oldNum and save operator
   var moveNum = function() {
     oldNum = theNum;
     theNum = "";
     operator = this.getAttribute("data-ops");
-
-    equals.setAttribute("data-result", ""); // Reset result in attr
+    //equals.setAttribute("data-result", ""); // Reset result in attr
+    console.log(operator+' is clicked')
   };
 
   // When: Equals is clicked. Calculate result
+  // ??
   var displayNum = function() {
-
     // Convert string input to numbers
     oldNum = parseFloat(oldNum);
     theNum = parseFloat(theNum);
@@ -82,9 +84,9 @@ TODO:
     // If NaN or Infinity returned
     if (!isFinite(resultNum)) {
       if (isNaN(resultNum)) { // If result is not a number; set off by, eg, double-clicking operators
-        resultNum = "You broke it!";
+        resultNum = "Nan found";
       } else { // If result is infinity, set off by dividing by zero
-        resultNum = "Look at what you've done";
+        resultNum = "Infinte";
         el('#calculator').classList.add("broken"); // Break calculator
         el('#reset').classList.add("show"); // And show reset button
       }
@@ -122,6 +124,7 @@ TODO:
 
   // Add click event to equal sign
   equals.onclick = displayNum;
+  equals.onclick(console.log(' =  is clicked'))
 
   // Add click event to clear button
   el("#clear").onclick = clearAll;
